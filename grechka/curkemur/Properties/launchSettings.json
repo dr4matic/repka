@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "curkemur": {
+      "commandName": "Project",
+      "commandLineArgs": "привет как дела пока"
+    }
+  }
+}
