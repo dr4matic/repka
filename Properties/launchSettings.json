@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "kod": {
+      "commandName": "Project",
+      "commandLineArgs": "Привет! как_дела? пока"
+    }
+  }
+}
