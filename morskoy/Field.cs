@@ -6,14 +6,14 @@ namespace morskoyboy
 {
     public class Field
     {
-        private byte[,] cells;
-        public byte GetCellsValue(byte x, byte y)
+        private CellValue[,] cells;
+        public CellValue GetCellsValue(byte x, byte y)
         {
             return cells[x, y];
         }
-        public bool SetCellValue(byte x, byte y, byte value)
+        public bool SetCellValue(byte x, byte y, CellValue value)
         {
-            if (cells[x, y] != 0)
+            if (cells[x, y] != CellValue.Empty)
             {
                return false;
             }
@@ -22,7 +22,7 @@ namespace morskoyboy
         }
         public Field(int sizex, int sizey)
         {
-            cells = new byte[sizex, sizey];
+            cells = new CellValue[sizex, sizey];
         }
         public Field(int sizex) : this(sizex, sizex)
         {
@@ -32,13 +32,18 @@ namespace morskoyboy
         {
 
         }
-        public bool CrashValue(byte x, byte y)
+        public CellValue CrashValue(byte x, byte y)
         {
-            if (cells[x,y] == 0)
+            if (cells[x,y] == CellValue.Ship)
             {
-                return false;
+                cells[x, y] = CellValue.Crash;
             }
-            return true;
+            if (cells[x,y] == CellValue.Empty)
+            {
+                cells[x, y] = CellValue.Hit;                
+            }
+            
+            return cells[x, y];
         }
         
     }

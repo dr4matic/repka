@@ -4,11 +4,26 @@ using System.Text;
 
 namespace morskoyboy
 {
-    enum CellValue
+    /// <summary>
+    /// Описание и значение клеток
+    /// </summary>
+    public enum CellValue
     {
+        /// <summary>
+        /// пустая клетка
+        /// </summary>
         Empty = 0,
+        /// <summary>
+        /// корабль
+        /// </summary>
         Ship = 1,
+        /// <summary>
+        /// попадание в пустую клетку
+        /// </summary>
         Hit = 2,
-        Crashs = 3,
+        /// <summary>
+        /// попадание по кораблю
+        /// </summary>
+        Crash = 3,
     }
 }
