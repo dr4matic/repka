@@ -7,6 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kod", "kod.csproj", "{5B3FA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "morskoy", "morskoy\morskoy.csproj", "{78173FEC-32A0-40E4-8471-C16AF34CDD83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{2E7D3682-5B3B-46AD-BEB7-EEC1DEB817A4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{78173FEC-32A0-40E4-8471-C16AF34CDD83} = {78173FEC-32A0-40E4-8471-C16AF34CDD83}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +26,10 @@ Global
 		{78173FEC-32A0-40E4-8471-C16AF34CDD83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78173FEC-32A0-40E4-8471-C16AF34CDD83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78173FEC-32A0-40E4-8471-C16AF34CDD83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E7D3682-5B3B-46AD-BEB7-EEC1DEB817A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E7D3682-5B3B-46AD-BEB7-EEC1DEB817A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E7D3682-5B3B-46AD-BEB7-EEC1DEB817A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E7D3682-5B3B-46AD-BEB7-EEC1DEB817A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

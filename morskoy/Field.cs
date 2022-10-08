@@ -45,6 +45,11 @@ namespace morskoyboy
             
             return cells[x, y];
         }
+            public (int x, int y, CellValue)[] GetCellsVseIdetPoPlanu()
+        {
+
+        }
+        
         
     }
 }
