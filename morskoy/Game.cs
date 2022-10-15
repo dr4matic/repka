@@ -23,7 +23,13 @@ namespace morskoyboy
                 ? secondmap
                 : firstmap;
             var exceptionmap = new Field();
+            var cells = field.GetCellsValues();
+            foreach (var znach in cells)
+            {
+                exceptionmap.SetCellValue(znach.x, znach.y, znach.v);
+            }
 
+            return exceptionmap;
         }
     }
 }

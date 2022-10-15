@@ -11,7 +11,7 @@ namespace morskoyboy
         {
             return cells[x, y];
         }
-        public bool SetCellValue(byte x, byte y, CellValue value)
+        public bool SetCellValue(int x, int y, CellValue value)
         {
             if (cells[x, y] != CellValue.Empty)
             {
@@ -45,9 +45,19 @@ namespace morskoyboy
             
             return cells[x, y];
         }
-            public (int x, int y, CellValue)[] GetCellsVseIdetPoPlanu()
+            
+        public (int x, int y, CellValue v)[] GetCellsValues()
         {
-
+            var rezult = new List<(int x, int y, CellValue)>();
+            for (var j = 0; j < cells.GetLength(1); j++)
+            {
+                for (var i = 0; i < cells.GetLength(0); i++)
+                    
+                {
+                    rezult.Add((i,j, cells[i,j]));
+                }
+            }
+            return rezult.ToArray();
         }
         
         
