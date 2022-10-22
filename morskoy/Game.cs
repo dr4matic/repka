@@ -26,7 +26,8 @@ namespace morskoyboy
             var cells = field.GetCellsValues();
             foreach (var znach in cells)
             {
-                exceptionmap.SetCellValue(znach.x, znach.y, znach.v);
+                var res = znach.v == CellValue.Ship ? CellValue.Empty : znach.v;
+                exceptionmap.SetCellValue(znach.x, znach.y, res);
             }
 
             return exceptionmap;
