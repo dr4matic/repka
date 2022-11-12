@@ -6,9 +6,25 @@ namespace morskoyboy
 {
     public class Game
     {
+        public delegate void PlayerEvent(CellValue cv, PlayerValue pv);
         private Field firstmap = new Field();
         private Field secondmap = new Field();
         private IEnumerator<PlayerValue> _turns = GameTurns().GetEnumerator();
+        public event PlayerEvent OnPlayerMove;
+        public event PlayerEvent OnPlayerRetry;
+
+        public PlayerValue Current => _turns.Current;
+
+        public Game()
+        {
+            OnPlayerMove += Game_OnPlayerMove;
+        }
+
+        public void Start()
+        {
+            _turns.MoveNext();
+        }
+
 
         public Field GetPlayerField(PlayerValue player)
         {
@@ -40,7 +56,16 @@ namespace morskoyboy
                 return;
             }
             var field = GetPlayerField(pv == PlayerValue.First ? PlayerValue.Second : PlayerValue.First);
-            field.CrashValue(x, y);
+            var oldznach = field.GetCellsValue(x, y);
+            if (oldznach == CellValue.Crash || oldznach == CellValue.Hit)
+            {
+                OnPlayerRetry?.Invoke(oldznach, pv);
+                return;
+            }
+
+            var result = field.CrashValue(x, y);
+
+            OnPlayerMove?.Invoke(result, pv);
         }
         private static IEnumerable<PlayerValue> GameTurns()
         {
@@ -50,9 +75,14 @@ namespace morskoyboy
                 yield return PlayerValue.Second;
             }
         }
-        public void Start()
+
+        private void Game_OnPlayerMove(CellValue cv, PlayerValue pv)
         {
-            _turns.MoveNext();
+            if (cv != CellValue.Crash)
+            {
+                _turns.MoveNext();
+            }
         }
+        
     }
 }

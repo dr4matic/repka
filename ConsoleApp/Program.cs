@@ -1,6 +1,7 @@
 ﻿
 using morskoyboy;
 using System;
+using System.Linq;
 
 namespace ConsoleApp
 {
@@ -10,6 +11,8 @@ namespace ConsoleApp
         {
             var gamove = new Game();
             gamove.Start();
+            gamove.OnPlayerRetry += Gamove_OnPlayerRetry;
+            gamove.OnPlayerMove += Gamove_OnPlayerMove;
             var ui = new FieldUI();
             var firstplace = gamove.GetPlayerField(PlayerValue.First);
             firstplace.SetCellValue(5, 4, CellValue.Ship);
@@ -32,12 +35,36 @@ namespace ConsoleApp
             Console.ReadKey();
 
             gamove.PlayerMove(2 ,7, PlayerValue.First);
-            secondplace = gamove.GetOpponentField(PlayerValue.Second);
+            secondplace = gamove.GetOpponentField(PlayerValue.First);
             chicken = secondplace.GetCellsValues();
             ui.PrintField(50, 20, chicken);
 
             Console.ReadKey();
+
+            gamove.PlayerMove(2, 7, PlayerValue.First);
+
+            Console.ReadKey();
+
+
+
         }
+
+        private static void Gamove_OnPlayerMove(CellValue cv, PlayerValue pv)
+        {
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine(string.Join(" ", Enumerable.Range(0, 25).Select(x => "")));
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine($"Игрок {pv} выстрелил с результатом {cv}");
+        }
+
+        private static void Gamove_OnPlayerRetry(CellValue cv, PlayerValue pv)
+        {
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine(string.Join(" ", Enumerable.Range(0, 25).Select(x => "")));
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine("Игрок, ты уже сюда стрелял");
+        }
+
         static void Test(string[] args)
         {
             var fort = new Field();
